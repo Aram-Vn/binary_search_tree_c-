@@ -31,5 +31,6 @@ int main () {
     std::cout << "****_post_***" << std::endl;
     b.post_order();
 
-    std::cout << "hight:  "<< b.height()<< std::endl;
+    std::cout << "max:  "<< b.find_max()->val << std::endl;
+    std::cout << "MIN:  "<< b.find_min()->val << std::endl;
 }

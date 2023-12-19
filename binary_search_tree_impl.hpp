@@ -85,9 +85,14 @@ typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
 template <class T>
 void BST<T>::Delete(const T& val)
 {
-/*+++++++++++++++++++++++++++++++++++*/
+
 }
 
+template <class T>
+void BST<T>::Delete(const T& val, Node* root)
+{
+
+}
 
 //----------------------_search_--------------------------//
 template <class T>
@@ -180,13 +185,13 @@ void BST<T>::post_order(Node* root1)
 
 //--------------------_find_Min_--------------------------------//
 template <class T>
-const T& BST<T>::find_min()
+typename BST<T>::Node* BST<T>::find_min()
 {
     return find_min(root);
 }
 
 template <class T>
-const T& BST<T>::find_min(Node* root1)
+typename BST<T>::Node* BST<T>::find_min(Node* root1)
 {
     if(root == nullptr)
     {
@@ -199,19 +204,19 @@ const T& BST<T>::find_min(Node* root1)
         root1 = root1->left;
     }
 
-    return root1->val;
+    return root1;
 }
 
 
 //-------------------------_find_max_-----------------------------//
 template <class T>
-const T& BST<T>::find_max()
+typename BST<T>::Node* BST<T>::find_max()
 {
     return find_max(root);
 }
 
 template <class T>
-const T& BST<T>::find_max(Node* root1)
+typename BST<T>::Node* BST<T>::find_max(Node* root1)
 {
     if(root == nullptr)
     {
@@ -225,7 +230,7 @@ const T& BST<T>::find_max(Node* root1)
         root1 = root1->right;
     }
 
-    return root1->val;
+    return root1;
 }
 
 //-------------------------_height_---------------------------//
