@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <initializer_list>
-
+#include <algorithm>
 template <class T>
 class BST
 {
@@ -36,6 +36,7 @@ public:
     void post_order(); //
     const T& find_min(); //
     const T& find_max(); //
+    int height(); //
 
     Node* get_root(); //
 
@@ -49,9 +50,8 @@ private:
     void post_order(Node* root1); //
     const T& find_min(Node* root1); //
     const T& find_max(Node* root1); //
+    int height(Node* root1); //
     
-
-
 };
 
 #include "binary_search_tree_impl.hpp"

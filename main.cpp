@@ -31,31 +31,5 @@ int main () {
     std::cout << "****_post_***" << std::endl;
     b.post_order();
 
-    if(b.search(6))
-    {
-        std::cout << "Yes" << std::endl;
-    }
-
-    if(b.search(8))
-    {
-        std::cout << "Yes" << std::endl;
-    }
-
-    if(!(b.search(7)))
-    {
-         std::cout << "NO" << std::endl;
-    }
-
-    if(!(b.search(-1)))
-    {
-         std::cout << "NO" << std::endl;
-    }
-
-    std::cout << "*******" << std::endl;
-
-    std::cout << "Min is:  " << b.find_min() << std::endl;
-    std::cout << "Max is:  " << b.find_max() << std::endl;
-
-    b.clear();
-    std::cout << "Max is:  " << b.find_max() << std::endl;
-}   
+    std::cout << "hight:  "<< b.height()<< std::endl;
+}

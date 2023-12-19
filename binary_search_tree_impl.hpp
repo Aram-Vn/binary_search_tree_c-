@@ -228,6 +228,28 @@ const T& BST<T>::find_max(Node* root1)
     return root1->val;
 }
 
+//-------------------------_height_---------------------------//
+template <class T>
+int BST<T>::height()
+{
+    return height(root);
+}
+
+template <class T>
+int BST<T>::height(Node* root1)
+{
+    if (root1 == nullptr)
+    {
+        return -1;
+    }
+    else
+    {
+        int leftH = height(root1->left);
+        int rightH = height(root1->right);
+
+        return std::max(leftH, rightH) + 1;
+    }
+}
 
 //-------------------------_get_root_------------------------//
 template <class T>
