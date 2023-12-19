@@ -256,9 +256,68 @@ int BST<T>::height(Node* root1)
     }
 }
 
+
+//--------------------------_successor_-----------------------//
+template <class T>
+typename BST<T>::Node* BST<T>::successor(const T& val)
+{
+    Node* tar = search_node(root, val);
+
+    if(tar == nullptr)
+    {
+        return nullptr;
+    }
+
+    if(tar->right != nullptr)
+    {
+        return find_min(tar->right);
+    }
+
+    Node* successor = nullptr;
+    Node* ancestor = root;
+
+    while (ancestor != tar)
+    {
+        if (val < ancestor->val)
+        {
+            successor = ancestor;
+            ancestor = ancestor->left;
+        }
+        else
+        {
+            ancestor = ancestor->right;
+        }
+    }
+
+    return successor;
+}
+
+
 //-------------------------_get_root_------------------------//
 template <class T>
 typename BST<T>::Node* BST<T>::get_root()
 {
     return root;
+}
+
+//--------------------------_search_node_---------------------//
+template <class T>
+typename BST<T>::Node* BST<T>::search_node(Node* root1, const T& val)
+{
+    if(root1 == nullptr)
+    {
+        return nullptr;
+    }
+
+    if(root1->val == val)
+    {
+        return root1;
+    }
+
+    if(root1->val < val)
+    {
+        return search_node(root1->right, val);
+    }
+
+    return search_node(root1->left, val);
 }

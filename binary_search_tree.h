@@ -38,6 +38,8 @@ public:
     Node* find_max(); //
     int height(); //
 
+    Node* successor(const T& val);
+
     Node* get_root(); //
 
 
@@ -54,6 +56,7 @@ private:
     Node* find_min(Node* root1); //
     Node* find_max(Node* root1); //
     int height(Node* root1); //
+    Node* search_node(Node* root1, const T& val); 
     
 };
 

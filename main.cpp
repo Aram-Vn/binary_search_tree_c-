@@ -33,4 +33,8 @@ int main () {
 
     std::cout << "max:  "<< b.find_max()->val << std::endl;
     std::cout << "MIN:  "<< b.find_min()->val << std::endl;
-}
+
+    std::cout << b.successor(20)->val << std::endl;
+    std::cout << b.successor(40)->val << std::endl;
+
+}   
