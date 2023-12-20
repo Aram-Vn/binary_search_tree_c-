@@ -23,18 +23,24 @@ int main () {
     b.insert(20); 
     b.insert(35);
     b.insert(42);
+
+    std::cout << b.height() << std::endl; 
     
-    std::cout << "****_pre_***" << std::endl;
-    b.pre_order();
-    std::cout << "****_in_***" << std::endl;
-    b.inorder();
-    std::cout << "****_post_***" << std::endl;
-    b.post_order();
 
-    std::cout << "max:  "<< b.find_max()->val << std::endl;
-    std::cout << "MIN:  "<< b.find_min()->val << std::endl;
+    // std::cout << "****_pre_***" << std::endl;
+    // b.pre_order();
+    // std::cout << "****_in_***" << std::endl;
+    // b.inorder();
+    // std::cout << "****_post_***" << std::endl;
+    // b.post_order();
 
-    std::cout << b.successor(20)->val << std::endl;
-    std::cout << b.successor(40)->val << std::endl;
+    // b.Delete(40);
+
+
+    // std::cout << "max:  "<< b.find_max()->val << std::endl;
+    // std::cout << "MIN:  "<< b.find_min()->val << std::endl;
+
+    // std::cout << b.successor(20)->val << std::endl;
+    // std::cout << b.successor(50)->val << std::endl;
 
 }   

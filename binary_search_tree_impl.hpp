@@ -85,12 +85,48 @@ typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
 template <class T>
 void BST<T>::Delete(const T& val)
 {
-
+    root = Delete(val, root);
 }
 
 template <class T>
-void BST<T>::Delete(const T& val, Node* root)
+typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1)
 {
+    if (root1 == nullptr)
+    {
+        return root1;
+    }
+
+    if (val < root1->val)
+    {
+        root1->left = Delete(val, root1->left);
+    }
+    else if (val > root1->val)
+    {
+        root1->right = Delete(val, root1->right);
+    }
+    else
+    {
+        if (root1->left == nullptr)
+        {
+            Node* tmp = root1->right;
+            delete root1;
+            return tmp;
+        } 
+        else if (root1->right == nullptr)
+        {
+            Node* tmp = root1->left;
+            delete root1;
+            return tmp;
+        }
+        else
+        {
+            Node* tmp = find_min(root1->right);
+            root1->val = tmp->val;
+            root1->right = Delete(root1->val, root1->right);
+        }
+    }
+
+    return root1;
 
 }
 
@@ -104,17 +140,17 @@ bool BST<T>::search(const T& val)
 template <class T>
 bool BST<T>::search(Node* root1, const T& val)
 {
-    if(root1 == nullptr)
+    if (root1 == nullptr)
     {
         return false;
     }
 
-    if(root1->val == val)
+    if (root1->val == val)
     {
         return true;
     }
 
-    if(root1->val < val)
+    if (root1->val < val)
     {
         return search(root1->right, val);
     }
@@ -193,7 +229,7 @@ typename BST<T>::Node* BST<T>::find_min()
 template <class T>
 typename BST<T>::Node* BST<T>::find_min(Node* root1)
 {
-    if(root == nullptr)
+    if (root == nullptr)
     {
         std::cout << "\nfor find_min\nnullptr" << std::endl;
         exit(0);
@@ -218,7 +254,7 @@ typename BST<T>::Node* BST<T>::find_max()
 template <class T>
 typename BST<T>::Node* BST<T>::find_max(Node* root1)
 {
-    if(root == nullptr)
+    if (root == nullptr)
     {
         std::cout << "\nfor find_max\nnullptr" << std::endl;
         exit(0);
@@ -252,6 +288,10 @@ int BST<T>::height(Node* root1)
         int leftH = height(root1->left);
         int rightH = height(root1->right);
 
+        std::cout << "root->val   " << root1->val << std::endl;
+        std::cout << "leftH   " << leftH << std::endl;
+        std::cout << "rightH   " << rightH << std::endl;
+
         return std::max(leftH, rightH) + 1;
     }
 }
@@ -263,12 +303,12 @@ typename BST<T>::Node* BST<T>::successor(const T& val)
 {
     Node* tar = search_node(root, val);
 
-    if(tar == nullptr)
+    if (tar == nullptr)
     {
         return nullptr;
     }
 
-    if(tar->right != nullptr)
+    if (tar->right != nullptr)
     {
         return find_min(tar->right);
     }
@@ -290,6 +330,26 @@ typename BST<T>::Node* BST<T>::successor(const T& val)
     }
 
     return successor;
+}
+
+
+//-------------------------_predecessor_----------------------//
+template <class T>
+typename BST<T>::Node* BST<T>::predecessor(const T& val)
+{
+    Node* tar = search_node(root, val);
+
+    if(tar == nullptr)
+    {
+        return nullptr;
+    }
+
+    if(tar->left != nullptr)
+    {
+        return find_max(tar->left);
+    }
+
+
 }
 
 

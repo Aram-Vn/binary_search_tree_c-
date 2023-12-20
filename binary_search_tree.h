@@ -28,7 +28,7 @@ public:
     void clear(); //
     void insert(const T& val1); //
     
-    void Delete(const T& val);
+    void Delete(const T& val); 
     
     bool search(const T& val);//
     void inorder(); //
@@ -37,8 +37,8 @@ public:
     Node* find_min(); //
     Node* find_max(); //
     int height(); //
-
-    Node* successor(const T& val);
+    Node* successor(const T& val); //
+    Node* predecessor(const T& val);
 
     Node* get_root(); //
 
@@ -47,7 +47,7 @@ private:
     void clear(Node* node); //
     Node* insert(Node* node1, const T& val1); //
 
-    void Delete(const T& val, Node* root);
+    Node* Delete(const T& val, Node* root1);
 
     bool search(Node* root1, const T& val); //
     void inorder(Node* root1); //
