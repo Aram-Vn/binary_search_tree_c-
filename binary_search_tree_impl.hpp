@@ -4,6 +4,15 @@ BST<T>::BST() :
 {}
 
 template <class T>
+BST<T>::BST(std::initializer_list<T> init) : 
+    root(nullptr)
+{
+    for (const auto& elem : init) {
+        this->insert(elem);
+    }
+}
+
+template <class T>
 BST<T>::~BST()
 {
     clear(root);

@@ -23,13 +23,12 @@ public:
 public:
     ~BST();
     BST();
+    BST(std::initializer_list<T> init);
 
 public: 
     void clear(); //
     void insert(const T& val1); //
-    
-    void Delete(const T& val); 
-    
+    void Delete(const T& val); //
     bool search(const T& val);//
     void inorder(); //
     void pre_order(); //
@@ -39,16 +38,13 @@ public:
     int height(); //
     Node* successor(const T& val); //
     Node* predecessor(const T& val);
-
     Node* get_root(); //
 
 
 private:
     void clear(Node* node); //
     Node* insert(Node* node1, const T& val1); //
-
-    Node* Delete(const T& val, Node* root1);
-
+    Node* Delete(const T& val, Node* root1); //
     bool search(Node* root1, const T& val); //
     void inorder(Node* root1); //
     void pre_order(Node* root1); //
@@ -56,7 +52,7 @@ private:
     Node* find_min(Node* root1); //
     Node* find_max(Node* root1); //
     int height(Node* root1); //
-    Node* search_node(Node* root1, const T& val); 
+    Node* search_node(Node* root1, const T& val); //
     
 };
 
