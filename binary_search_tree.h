@@ -4,6 +4,7 @@
 #include <iostream>
 #include <initializer_list>
 #include <algorithm>
+#include <vector>
 template <class T>
 class BST
 {
@@ -37,8 +38,23 @@ public:
     Node* find_max(); //
     int height(); //
     Node* successor(const T& val); //
-    Node* predecessor(const T& val);
+    Node* predecessor(const T& val); //
+    int size() const; //
+    
+    bool is_valid_bst();
+    void print_tree();
+    void level_order();
+    bool contains(T val);
+    std::vector<T> serialize();
+    void range_query(int start, int end);
+    Node* copy();
+    T& kth_smallest(int k);
+    T& kth_largest(int k);
+    void update(const T& value, const T& new_value);
+
     Node* get_root(); //
+
+
 
 
 private:
@@ -52,6 +68,7 @@ private:
     Node* find_min(Node* root1); //
     Node* find_max(Node* root1); //
     int height(Node* root1); //
+    int size(Node* root1) const;
     Node* search_node(Node* root1, const T& val); //
     
 };

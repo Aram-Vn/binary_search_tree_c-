@@ -90,7 +90,7 @@ typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
 }
 
 
-//-----------------------_delete__________________________//
+//-----------------------_delete_---------------------------//
 template <class T>
 void BST<T>::Delete(const T& val)
 {
@@ -297,12 +297,38 @@ int BST<T>::height(Node* root1)
         int leftH = height(root1->left);
         int rightH = height(root1->right);
 
-        std::cout << "root->val   " << root1->val << std::endl;
-        std::cout << "leftH   " << leftH << std::endl;
-        std::cout << "rightH   " << rightH << std::endl;
+        // std::cout << "root->val   " << root1->val << std::endl;
+        // std::cout << "leftH   " << leftH << std::endl;
+        // std::cout << "rightH   " << rightH << std::endl;
 
         return std::max(leftH, rightH) + 1;
     }
+}
+
+
+//-------------------------_size_-----------------------------//
+template <class T>
+int BST<T>::size() const
+{
+    return size(root);
+}
+
+template <class T>
+int BST<T>::size(Node* root1) const
+{
+    if (root1 == nullptr)
+    {
+        return 0;
+    }
+
+    int leftSize = size(root1->left);
+    int rightSize = size(root1->right);
+
+        // std::cout << "**************\nroot->val   " << root1->val << std::endl;
+        // std::cout << "leftSize   " << leftSize << std::endl;
+        // std::cout << "rightSize   " << rightSize << std::endl;
+
+    return leftSize + rightSize + 1;
 }
 
 
@@ -321,24 +347,29 @@ typename BST<T>::Node* BST<T>::successor(const T& val)
     {
         return find_min(tar->right);
     }
-
-    Node* successor = nullptr;
-    Node* ancestor = root;
-
-    while (ancestor != tar)
+    else 
     {
-        if (val < ancestor->val)
-        {
-            successor = ancestor;
-            ancestor = ancestor->left;
-        }
-        else
-        {
-            ancestor = ancestor->right;
-        }
+        std::cout << "for successor\nthis node doesent have successor" << std::endl;
+        exit(0);
     }
 
-    return successor;
+    // Node* successor = nullptr;
+    // Node* ancestor = root;
+
+    // while (ancestor != tar)
+    // {
+    //     if (val < ancestor->val)
+    //     {
+    //         successor = ancestor;
+    //         ancestor = ancestor->left;
+    //     }
+    //     else
+    //     {
+    //         ancestor = ancestor->right;
+    //     }
+    // }
+
+    // return successor;
 }
 
 
@@ -357,8 +388,11 @@ typename BST<T>::Node* BST<T>::predecessor(const T& val)
     {
         return find_max(tar->left);
     }
-
-
+    else 
+    {
+        std::cout << "for predecessor\nthis node doesent have predecessor" << std::endl;
+        exit(0);
+    }
 }
 
 
@@ -368,6 +402,7 @@ typename BST<T>::Node* BST<T>::get_root()
 {
     return root;
 }
+
 
 //--------------------------_search_node_---------------------//
 template <class T>
