@@ -5,19 +5,7 @@ int main () {
 
     BST<int> b = {60, 50, 70, 40, 55, 65, 80, 30, 45, 53, 58, 63, 68, 75, 90, 20, 35, 42};
 
-    //std::cout << b.size() << std::endl;
-
-    //b.print_tree();
-
-    // std::vector<int> vec = b.serialize();
-
-    // for(const auto& e : vec)
-    // {
-    //     std::cout << e << " ";
-    // }
-    // std::cout << std::endl;
-
-    b.range_query(60, 75);
+    std::cout << b.kth_smallest(5)<< std::endl;
 
     // //std::cout << b.height() << std::endl; 
     

@@ -55,7 +55,8 @@ public:
     void range_query(int start, int end); //
 
     Node* copy();
-    const T& kth_smallest(int k);
+    
+    const T& kth_smallest(int k); //
     T& kth_largest(int k);
     void update(const T& value, const T& new_value);
 
