@@ -9,13 +9,16 @@ int main () {
 
     //b.print_tree();
 
-    std::vector<int> vec = b.serialize();
+    // std::vector<int> vec = b.serialize();
 
-    for(const auto& e : vec)
-    {
-        std::cout << e << " ";
-    }
-    std::cout << std::endl;
+    // for(const auto& e : vec)
+    // {
+    //     std::cout << e << " ";
+    // }
+    // std::cout << std::endl;
+
+    b.range_query(60, 75);
+
     // //std::cout << b.height() << std::endl; 
     
     // // std::cout << "****_pre_***" << std::endl;
