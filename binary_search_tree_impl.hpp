@@ -1,9 +1,9 @@
-template <class T>
+template <typename T>
 BST<T>::BST() :
     root(nullptr)
 {}
 
-template <class T>
+template <typename T>
 BST<T>::BST(std::initializer_list<T> init) : 
     root(nullptr)
 {
@@ -12,20 +12,20 @@ BST<T>::BST(std::initializer_list<T> init) :
     }
 }
 
-template <class T>
+template <typename T>
 BST<T>::~BST()
 {
     clear(root);
 }
 
-template <class T>
+template <typename T>
 BST<T>::Node::Node() : 
     left(nullptr),
     right(nullptr),
     val(0)
 {}
 
-template <class T>
+template <typename T>
 BST<T>::Node::Node(T val1, Node* left1, Node* right1) :
     left(left1),
     right(right1),
@@ -34,13 +34,13 @@ BST<T>::Node::Node(T val1, Node* left1, Node* right1) :
 
 
 //----------------_clear_---------------------//
-template <class T>
+template <typename T>
 void BST<T>::clear()
 {
     clear(root);
 }
 
-template <class T>
+template <typename T>
 void BST<T>::clear(Node* node)
 {
     if (node != nullptr)
@@ -56,7 +56,7 @@ void BST<T>::clear(Node* node)
 
 
 //-------------------_insert_--------------------//
-template <class T>
+template <typename T>
 void BST<T>::insert(const T& val1) 
 {
     if (val1 < 0)
@@ -69,7 +69,7 @@ void BST<T>::insert(const T& val1)
 
 }
 
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
 {
     if (node1 == nullptr)
@@ -91,13 +91,13 @@ typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
 
 
 //-----------------------_delete_---------------------------//
-template <class T>
+template <typename T>
 void BST<T>::Delete(const T& val)
 {
     root = Delete(val, root);
 }
 
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1)
 {
     if (root1 == nullptr)
@@ -140,13 +140,13 @@ typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1)
 }
 
 //----------------------_search_--------------------------//
-template <class T>
+template <typename T>
 bool BST<T>::search(const T& val)
 {
     return search(root, val);
 }
 
-template <class T>
+template <typename T>
 bool BST<T>::search(Node* root1, const T& val)
 {
     if (root1 == nullptr)
@@ -169,14 +169,14 @@ bool BST<T>::search(Node* root1, const T& val)
 
 
 //---------------------_inorder_-------------------------//
-template <class T>
+template <typename T>
 void BST<T>::inorder()
 {
     inorder(root);
     std::cout << std::endl;
 }
 
-template <class T>
+template <typename T>
 void BST<T>::inorder(Node* root1)
 {
     if (!root1) {
@@ -189,14 +189,14 @@ void BST<T>::inorder(Node* root1)
 
 
 //---------------------_pre_order_-------------------------//
-template <class T>
+template <typename T>
 void BST<T>::pre_order()
 {
     pre_order(root);
     std::cout << std::endl;
 }
 
-template <class T>
+template <typename T>
 void BST<T>::pre_order(Node* root1)
 {
     if (!root1) {
@@ -209,14 +209,14 @@ void BST<T>::pre_order(Node* root1)
 
 
 //-----------------------_post_order_---------------------------//
-template <class T>
+template <typename T>
 void BST<T>::post_order()
 {
     post_order(root);
     std::cout << std::endl;
 }
 
-template <class T>
+template <typename T>
 void BST<T>::post_order(Node* root1)
 {
     if (!root1) {
@@ -229,13 +229,13 @@ void BST<T>::post_order(Node* root1)
 
 
 //--------------------_find_Min_--------------------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::find_min()
 {
     return find_min(root);
 }
 
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::find_min(Node* root1)
 {
     if (root == nullptr)
@@ -254,13 +254,13 @@ typename BST<T>::Node* BST<T>::find_min(Node* root1)
 
 
 //-------------------------_find_max_-----------------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::find_max()
 {
     return find_max(root);
 }
 
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::find_max(Node* root1)
 {
     if (root == nullptr)
@@ -279,13 +279,13 @@ typename BST<T>::Node* BST<T>::find_max(Node* root1)
 }
 
 //-------------------------_height_---------------------------//
-template <class T>
+template <typename T>
 int BST<T>::height()
 {
     return height(root);
 }
 
-template <class T>
+template <typename T>
 int BST<T>::height(Node* root1)
 {
     if (root1 == nullptr)
@@ -307,13 +307,13 @@ int BST<T>::height(Node* root1)
 
 
 //-------------------------_size_-----------------------------//
-template <class T>
+template <typename T>
 int BST<T>::size() const
 {
     return size(root);
 }
 
-template <class T>
+template <typename T>
 int BST<T>::size(Node* root1) const
 {
     if (root1 == nullptr)
@@ -324,16 +324,16 @@ int BST<T>::size(Node* root1) const
     int leftSize = size(root1->left);
     int rightSize = size(root1->right);
 
-        // std::cout << "**************\nroot->val   " << root1->val << std::endl;
-        // std::cout << "leftSize   " << leftSize << std::endl;
-        // std::cout << "rightSize   " << rightSize << std::endl;
+        std::cout << "**************\nroot->val   " << root1->val << std::endl;
+        std::cout << "leftSize   " << leftSize << std::endl;
+        std::cout << "rightSize   " << rightSize << std::endl;
 
     return leftSize + rightSize + 1;
 }
 
 
 //--------------------------_successor_-----------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::successor(const T& val)
 {
     Node* tar = search_node(root, val);
@@ -347,34 +347,29 @@ typename BST<T>::Node* BST<T>::successor(const T& val)
     {
         return find_min(tar->right);
     }
-    else 
+
+    Node* successor = nullptr;
+    Node* ancestor = root;
+
+    while (ancestor != tar)
     {
-        std::cout << "for successor\nthis node doesent have successor" << std::endl;
-        exit(0);
+        if (val < ancestor->val)
+        {
+            successor = ancestor;
+            ancestor = ancestor->left;
+        }
+        else
+        {
+            ancestor = ancestor->right;
+        }
     }
 
-    // Node* successor = nullptr;
-    // Node* ancestor = root;
-
-    // while (ancestor != tar)
-    // {
-    //     if (val < ancestor->val)
-    //     {
-    //         successor = ancestor;
-    //         ancestor = ancestor->left;
-    //     }
-    //     else
-    //     {
-    //         ancestor = ancestor->right;
-    //     }
-    // }
-
-    // return successor;
+    return successor;
 }
 
 
 //-------------------------_predecessor_----------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::predecessor(const T& val)
 {
     Node* tar = search_node(root, val);
@@ -388,16 +383,165 @@ typename BST<T>::Node* BST<T>::predecessor(const T& val)
     {
         return find_max(tar->left);
     }
-    else 
+
+    Node* predecessor = nullptr;
+    Node* ancestor = root;
+
+    while (ancestor != tar)
     {
-        std::cout << "for predecessor\nthis node doesent have predecessor" << std::endl;
-        exit(0);
+        if (val < ancestor->val)
+        {
+            ancestor = ancestor->left;
+        }
+        else
+        {
+            predecessor = ancestor;
+            ancestor = ancestor->right;
+        }
+    }
+
+    return predecessor;
+}
+
+
+//-------------------------_is_valid_bst_---------------------//
+template <typename T>
+bool BST<T>::is_valid_bst()
+{
+    return is_valid_bst(root,  std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+}
+
+template <typename T>
+bool BST<T>::is_valid_bst(const Node* node, const T& min_val, const T& max_val) const
+{
+    if (node == nullptr)
+    {
+        return true;
+    }
+
+    if (node->val <= min_val || node->val >= max_val)
+    {
+        return false;
+    }
+
+    return is_valid_bst(node->left, min_val, node->val) && is_valid_bst(node->right, node->val, max_val);
+}
+
+
+//-----------------------------_level_order_------------------------//
+template <typename T>
+void BST<T>::level_order() const
+{
+    std::queue<Node*> nodes;
+    
+    nodes.push(root);
+
+    while (!nodes.empty())
+    {
+        Node* node = nodes.front();
+        if (node->left)
+        {
+            nodes.push(node->left);
+        }
+        if (node->right)
+        {
+            nodes.push(node->right);
+        }
+        std::cout << node->val << ' ';
+        nodes.pop();
     }
 }
 
 
+//-----------------------------_print_tree_------------------------//
+// template <typename T>
+// void BST<T>::print_tree() const
+// {
+//     std::queue<Node*> nodes;
+    
+//     nodes.push(root);
+
+//     int num = 1;
+//     int po = 1;
+
+//     while (!nodes.empty())
+//     {
+//         Node* node = nodes.front();
+//         if (node->left)
+//         {
+//             nodes.push(node->left);
+//         }
+//         else 
+//         {
+//             nodes.push(nullptr);
+//         }
+
+//         if (node->right)
+//         {
+//             nodes.push(node->right);
+//         }
+//         else 
+//         {
+//             nodes.push(nullptr);
+//         }
+
+//         if(nodes.front() != nullptr)
+//         {
+//             std::cout << node->val << ' ';
+//             nodes.pop();
+//         }
+//         else 
+//         {
+//             nodes.pop();
+//             std::cout << "  " << std::endl;
+//         }
+
+        
+//         num += 1;
+//         po += 1;
+
+//         if(std::pow(num, 1.0 / po) == 0)
+//         {
+//             std::cout << std::endl;
+//         }
+//     }
+// }
+
+
+//-------------------------_contains_-------------------------//
+template <typename T>
+bool BST<T>::contains(const T& val)
+{
+    return search(root, val);
+}
+
+
+//------------------------_serialize_-------------------------//
+template <typename T>
+std::vector<T> BST<T>::serialize()
+{  
+    std::vector<T> vec;
+    serialize(root, vec);
+    return vec;
+}
+
+template <typename T>
+void BST<T>::serialize(Node* root1, std::vector<T>& vec) 
+{  
+
+    if (!root1) {
+        return;
+    }
+    inorder(root1->left);
+    vec.emplace_back(root1->val);
+    inorder(root1->right);
+}
+
+
+//
+
 //-------------------------_get_root_------------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::get_root()
 {
     return root;
@@ -405,7 +549,7 @@ typename BST<T>::Node* BST<T>::get_root()
 
 
 //--------------------------_search_node_---------------------//
-template <class T>
+template <typename T>
 typename BST<T>::Node* BST<T>::search_node(Node* root1, const T& val)
 {
     if(root1 == nullptr)
