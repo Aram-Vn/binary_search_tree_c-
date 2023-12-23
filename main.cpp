@@ -5,14 +5,14 @@ int main () {
 
     BST<int> b = {60, 50, 70, 40, 55, 65, 80, 30, 45, 53, 58, 63, 68, 75, 90, 20, 35, 42};
 
-    std::cout << b.kth_smallest(5)<< std::endl;
+    std::cout << b.kth_smallest(13)<< std::endl;
 
     // //std::cout << b.height() << std::endl; 
     
     // // std::cout << "****_pre_***" << std::endl;
     // // b.pre_order();
-    // // std::cout << "****_in_***" << std::endl;
-    // // b.inorder();
+    std::cout << "****_in_***" << std::endl;
+     b.inorder();
     // // std::cout << "****_post_***" << std::endl;
     // // b.post_order();
 

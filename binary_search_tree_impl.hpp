@@ -582,33 +582,31 @@ template <typename T>
 const T& BST<T>::kth_smallest(int k)
 {
     int count = 0;
-    return kth_smallest(root, k, count);
+    return kth_smallest(root, k)->val;
 }
 
 template <typename T>
-const T& BST<T>::kth_smallest(const Node* node, int k, int& count)
+typename BST<T>::Node* BST<T>::kth_smallest(Node* root, int& k)
 {
-    if (node == nullptr)
+    if(root == nullptr)
     {
-        //throw std::out_of_range("Invalid value of k for kth_smallest.");
-    
+        return nullptr;
     }
 
-    T result = kth_smallest(node->left, k, count);
+    Node* left = kth_smallest(root->left, k);
 
-    count++;
-
-    if (count == k)
+    if(left != nullptr)
     {
-        result = node->val;
+        return left;
     }
 
-    if (count < k)
-    {
-        result = kth_smallest(node->right, k, count);
+    k--;
+
+    if(k == 0){
+        return root;
     }
 
-    return result;
+    return kth_smallest(root->right, k);
 }
 
 //-------------------------_get_root_------------------------//

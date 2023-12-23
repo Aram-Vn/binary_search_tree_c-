@@ -81,7 +81,7 @@ private:
     bool is_valid_bst(const Node* node, const T& min_val, const T& max_val) const;//
     void serialize(Node* root1, std::vector<T>& vec);
     void range_query(int start, int end, Node* root1);
-    const T& kth_smallest(const Node* node, int k, int& count); 
+    Node* kth_smallest(Node* root, int& k); 
 };
 
 #include "binary_search_tree_impl.hpp"
