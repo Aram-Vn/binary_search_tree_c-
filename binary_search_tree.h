@@ -48,17 +48,16 @@ public:
     int size() const; //
     bool is_valid_bst(); //
     
-    void print_tree() const; //
-    void level_order() const; 
+    void print_tree() const;
+
+    void level_order() const; //
     bool contains(const T& val); //
     std::vector<T> serialize(); //
     void range_query(int start, int end); //    
     const T& kth_smallest(int k); //
     const T& kth_largest(int k); //
     Node* copy(const Node* srcNode);
-
     void update(const T& value, const T& new_value);
-
     Node* get_root(); //
 
 

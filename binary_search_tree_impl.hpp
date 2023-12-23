@@ -695,6 +695,16 @@ typename BST<T>::Node* BST<T>::copy(const Node* srcNode)
     return newNode;
 }
 
+
+//--------------------------_update_--------------------------//
+template <class T>
+void BST<T>::update(const T& value, const T& new_value)
+{
+    delete(value);
+    insert(new_value);
+} 
+
+
 //-------------------------_get_root_------------------------//
 template <typename T>
 typename BST<T>::Node* BST<T>::get_root()
