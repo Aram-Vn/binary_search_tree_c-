@@ -47,9 +47,6 @@ public:
     Node* predecessor(const T& val); //
     int size() const; //
     bool is_valid_bst(); //
-    
-    void print_tree() const;
-
     void level_order() const; //
     bool contains(const T& val); //
     std::vector<T> serialize(); //
@@ -60,8 +57,7 @@ public:
     void update(const T& value, const T& new_value);
     Node* get_root(); //
 
-
-
+   void print_tree() const;
 
 private:
     void clear(Node* node); //

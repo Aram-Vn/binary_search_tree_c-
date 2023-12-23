@@ -329,9 +329,9 @@ int BST<T>::size(Node* root1) const
     int leftSize = size(root1->left);
     int rightSize = size(root1->right);
 
-        std::cout << "**************\nroot->val   " << root1->val << std::endl;
-        std::cout << "leftSize   " << leftSize << std::endl;
-        std::cout << "rightSize   " << rightSize << std::endl;
+        // std::cout << "**************\nroot->val   " << root1->val << std::endl;
+        // std::cout << "leftSize   " << leftSize << std::endl;
+        // std::cout << "rightSize   " << rightSize << std::endl;
 
     return leftSize + rightSize + 1;
 }
@@ -413,7 +413,7 @@ typename BST<T>::Node* BST<T>::predecessor(const T& val)
 template <typename T>
 bool BST<T>::is_valid_bst()
 {
-    return is_valid_bst(root,  std::numeric_limits<int>::min(), std::numeric_limits<int>::max());
+    return is_valid_bst(root,  std::numeric_limits<T>::min(), std::numeric_limits<T>::max());
 }
 
 template <typename T>
