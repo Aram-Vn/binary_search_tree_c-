@@ -5,7 +5,7 @@ int main () {
 
     BST<int> b = {60, 50, 70, 40, 55, 65, 80, 30, 45, 53, 58, 63, 68, 75, 90, 20, 35, 42};
 
-    std::cout << b.kth_smallest(13)<< std::endl;
+    std::cout << b.kth_largest(5) << std::endl;
 
     // //std::cout << b.height() << std::endl; 
     

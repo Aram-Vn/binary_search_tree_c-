@@ -542,7 +542,7 @@ void BST<T>::serialize(Node* root1, std::vector<T>& vec)
 template <typename T>
 void BST<T>::range_query(int start, int end)
 {
-    if(start > end)
+    if (start > end)
     {
         return;
     }        
@@ -557,11 +557,11 @@ void BST<T>::range_query(int start, int end, Node* root1)
     }
 
     range_query(start, end, root1->left);
-    if(root1->val >= start && root1->val < end)
+    if (root1->val >= start && root1->val < end)
     {
         std::cout << root1->val << " ";
     }
-    else if(root1->val == end)
+    else if (root1->val == end)
     {
         std::cout << std::endl;
         return;
@@ -569,7 +569,7 @@ void BST<T>::range_query(int start, int end, Node* root1)
 
     range_query(start, end, root1->right);
 
-    if(root1->val == end)
+    if (root1->val == end)
     {
         std::cout << std::endl;
         return;
@@ -588,26 +588,91 @@ const T& BST<T>::kth_smallest(int k)
 template <typename T>
 typename BST<T>::Node* BST<T>::kth_smallest(Node* root, int& k)
 {
-    if(root == nullptr)
+    if (root == nullptr)
     {
         return nullptr;
     }
 
     Node* left = kth_smallest(root->left, k);
 
-    if(left != nullptr)
+    if (left != nullptr)
     {
         return left;
     }
 
     k--;
 
-    if(k == 0){
+    if (k == 0){
         return root;
     }
 
     return kth_smallest(root->right, k);
 }
+
+
+//---------------------------_kth_largest_-----------------------//
+template <class T>
+const T& BST<T>::kth_largest(int k)
+{
+    Node* res = kth_largest_node(k);
+    if (res != nullptr)
+    {
+        return res->val;
+    }
+    else
+    {
+        throw std::out_of_range("Invalid value of k for kth_largest.");
+    }
+}
+
+template <class T>
+typename BST<T>::Node* BST<T>::kth_largest_node(int k)
+{
+    Node* curr = root;
+    Node* Klargest = nullptr;
+
+    int count = 0;
+
+    while (curr != nullptr) 
+    {
+        if (curr->right == nullptr) 
+        {
+            if (++count == k)
+            {
+                Klargest = curr;
+            }
+
+            curr = curr->left;
+        } 
+        else 
+        {
+            Node* succ = curr->right;
+
+            while (succ->left != nullptr && succ->left != curr)
+                succ = succ->left;
+
+            if (succ->left == nullptr) 
+            {
+                succ->left = curr;
+
+                curr = curr->right;
+            } 
+            else 
+            {
+                succ->left = nullptr;
+
+                if (++count == k)
+                {
+                    Klargest = curr;
+                }
+                curr = curr->left;
+            }
+        }
+    }
+
+    return Klargest;
+}
+
 
 //-------------------------_get_root_------------------------//
 template <typename T>

@@ -52,12 +52,11 @@ public:
     void level_order() const; 
     bool contains(const T& val); //
     std::vector<T> serialize(); //
-    void range_query(int start, int end); //
+    void range_query(int start, int end); //    
+    const T& kth_smallest(int k); //
+    const T& kth_largest(int k); //
 
     Node* copy();
-    
-    const T& kth_smallest(int k); //
-    T& kth_largest(int k);
     void update(const T& value, const T& new_value);
 
     Node* get_root(); //
@@ -81,7 +80,8 @@ private:
     bool is_valid_bst(const Node* node, const T& min_val, const T& max_val) const;//
     void serialize(Node* root1, std::vector<T>& vec);
     void range_query(int start, int end, Node* root1);
-    Node* kth_smallest(Node* root, int& k); 
+    Node* kth_smallest(Node* root, int& k); //
+    Node* kth_largest_node(int k); //
 };
 
 #include "binary_search_tree_impl.hpp"
