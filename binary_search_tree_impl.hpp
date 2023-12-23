@@ -32,6 +32,11 @@ BST<T>::Node::Node(T val1, Node* left1, Node* right1) :
     val(val1)
 {}  
 
+template <class T>
+BST<T>::BST(const BST& other) : root(nullptr) {
+    root = copy(other.root);
+}
+
 
 //----------------_clear_---------------------//
 template <typename T>
@@ -673,6 +678,22 @@ typename BST<T>::Node* BST<T>::kth_largest_node(int k)
     return Klargest;
 }
 
+
+//-------------------------_copy_---------------------------//
+template <class T>
+typename BST<T>::Node* BST<T>::copy(const Node* srcNode) 
+{
+    if (srcNode == nullptr) {
+        return nullptr;
+    }
+
+    Node* newNode = new Node(srcNode->val, nullptr, nullptr);
+
+    newNode->left = copy(srcNode->left);
+    newNode->right = copy(srcNode->right);
+
+    return newNode;
+}
 
 //-------------------------_get_root_------------------------//
 template <typename T>
