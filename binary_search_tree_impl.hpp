@@ -75,23 +75,23 @@ void BST<T>::insert(const T& val1)
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::insert(Node* node1, const T& val1)
+typename BST<T>::Node* BST<T>::insert(Node* root, const T& val1)
 {
-    if (node1 == nullptr)
+    if (root == nullptr)
     {
         return new Node(val1, nullptr, nullptr);
     }
 
-    if (val1 < node1->val) 
+    if (val1 < root->val) 
     {
-        node1->left = insert(node1->left, val1);
+        root->left = insert(root->left, val1);
     } 
-    else if (val1 > node1->val) 
+    else if (val1 > root->val) 
     {
-        node1->right = insert(node1->right, val1);
+        root->right = insert(root->right, val1);
     }
 
-    return node1;
+    return root;
 }
 
 
@@ -700,7 +700,7 @@ typename BST<T>::Node* BST<T>::copy(const Node* srcNode)
 template <class T>
 void BST<T>::update(const T& value, const T& new_value)
 {
-    delete(value);
+    Delete(value);
     insert(new_value);
 } 
 

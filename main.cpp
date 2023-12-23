@@ -13,9 +13,10 @@ int main () {
     std::cout << "****_in_***" << std::endl;
     b.inorder();
 
-    BST<int> c = b;
+    b.update(20, 999);
+
     std::cout << "****_in_***" << std::endl;
-    c.inorder();
+    b.inorder();
     // std::cout << "****_post_***" << std::endl;
     // b.post_order();
 

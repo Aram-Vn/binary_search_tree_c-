@@ -65,7 +65,7 @@ public:
 
 private:
     void clear(Node* node); //
-    Node* insert(Node* node1, const T& val1); //
+    Node* insert(Node* root, const T& val1); //
     Node* Delete(const T& val, Node* root1); //
     bool search(Node* root1, const T& val); //
     void inorder(Node* root1); //
