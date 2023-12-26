@@ -27,10 +27,10 @@ public:
 
     Node* root;
 public:
-    ~BST();
-    BST();
-    BST(const BST& other);
-    BST(std::initializer_list<T> init);
+    ~BST(); //
+    BST(); //
+    BST(const BST& other); //
+    BST(std::initializer_list<T> init); //
 
 public: 
     void clear(); //
