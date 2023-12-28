@@ -1,76 +1,106 @@
+// BST default constructor
+template <typename T> 
+BST<T>::BST()         
+    : root(nullptr)   
+{}                    
+
+//  initializer list constructor 
 template <typename T>
-BST<T>::BST() :
-    root(nullptr)
+BST<T>::BST(std::initializer_list<T> init) :      
+    root(nullptr)                             
+{                                             
+    for (const auto& elem : init)
+    {
+      // calls insert function for every elem
+      //to insert theme in rightplase
+      this->insert(elem);                   
+    }                                         
+}                                             
+
+// destructor
+template <typename T>
+BST<T>::~BST()          
+{                       
+    clear(root);        
+} 
+
+// Node default constructor
+template <typename T>
+BST<T>::Node::Node() :  
+    left(nullptr),     
+    right(nullptr),     
+    val(0)              
+{}                      
+
+// Node parameterized constructor
+template <typename T>
+BST<T>::Node::Node(T val1, Node* left1, Node* right1) : 
+    left(left1),                                       
+    right(right1),                                      
+    val(val1)                                           
 {}
 
-template <typename T>
-BST<T>::BST(std::initializer_list<T> init) : 
-    root(nullptr)
+
+template <class T>                                  
+BST<T>::BST(const BST& other) : root(nullptr)  // copy  constructor
 {
-    for (const auto& elem : init) {
-        this->insert(elem);
-    }
+   
+    root = copy(other.root);  // calls copy recursive function for deep copying
 }
 
-template <typename T>
-BST<T>::~BST()
-{
-    clear(root);
-}
-
-template <typename T>
-BST<T>::Node::Node() : 
-    left(nullptr),
-    right(nullptr),
-    val(0)
-{}
-
-template <typename T>
-BST<T>::Node::Node(T val1, Node* left1, Node* right1) :
-    left(left1),
-    right(right1),
-    val(val1)
-{}  
-
+//-------------------------_copy_---------------------------//
 template <class T>
-BST<T>::BST(const BST& other) : root(nullptr) {
-    root = copy(other.root);
-}
+typename BST<T>::Node *BST<T>::copy(const Node *srcNode)  // Private helper function for copying the contents of a Binary Search Tree
+{
+   
+    if (srcNode == nullptr) {   // Check if the source BST node is empty (base case for recursion)
+      return nullptr; // If the source BST is empty, 
+    }
 
+    Node *newNode = new Node(srcNode->val, nullptr, nullptr);  // Create a new node to store the copied values from the source node
+
+   
+    newNode->left = copy(srcNode->left);  // Recursively copy the left subtree of the source node
+    
+    newNode->right = copy(srcNode->right); // Recursively copy the right subtree of the source node
+   
+    return newNode;  // Return the pointer to the newly created node with copied values
+}
 
 //----------------_clear_---------------------//
+
 template <typename T>
-void BST<T>::clear()
+void BST<T>::clear() // Public function to clear the entire Binary Search Tree
 {
-    clear(root);
+    clear(root); // call of Private recursive helper function
 }
 
 template <typename T>
-void BST<T>::clear(Node* node)
+void BST<T>::clear(Node* node) // Private helper function for clearing the contents of a Binary Search Tree
 {
     if (node != nullptr)
     {
-        clear(node->left);
-        clear(node->right);
+      clear(node->left); // Recursively call of left subtrees
+      clear(node->right); // Recursively call of right subtrees
 
-        delete node;
+      delete node; // Delete the current node in posorder
     }
 
-    root = nullptr;
+    root = nullptr; // After clearing all nodes, set the root to nullptr
 }
 
 
 //-------------------_insert_--------------------//
 template <typename T>
-void BST<T>::insert(const T& val1) 
+void BST<T>::insert(const T& val1) // Public function to insert a value in right plase into the Binary Search Tree
 {
-    if (val1 < 0)
+    if (val1 < 0)  // Check if the value is non-negative, as the Binary Search Tree is assumed to contain non-negative values
     {
         std::cout << "in BST/insert\nval must be >=0" << std::endl;
         exit(0);
     }
 
-    root = insert(root, val1);
+    root = insert(root, val1);  // Call the private recursive helper function to perform the insertion
 
 }
 
@@ -676,23 +706,6 @@ typename BST<T>::Node* BST<T>::kth_largest_node(int k)
     }
 
     return Klargest;
-}
-
-
-//-------------------------_copy_---------------------------//
-template <class T>
-typename BST<T>::Node* BST<T>::copy(const Node* srcNode) 
-{
-    if (srcNode == nullptr) {
-        return nullptr;
-    }
-
-    Node* newNode = new Node(srcNode->val, nullptr, nullptr);
-
-    newNode->left = copy(srcNode->left);
-    newNode->right = copy(srcNode->right);
-
-    return newNode;
 }
 
 
