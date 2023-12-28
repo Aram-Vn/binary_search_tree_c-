@@ -105,101 +105,107 @@ void BST<T>::insert(const T& val1) // Public function to insert a value in right
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::insert(Node* root, const T& val1)
-{
-    if (root == nullptr)
+typename BST<T>::Node* BST<T>::insert(Node* root, const T& val1) // Private helper function to recursively insert a value into the Binary Search Tree
+{ 
+    if (root == nullptr)  // If the current subtree is empty, create a new node with the given value
     {
         return new Node(val1, nullptr, nullptr);
     }
 
-    if (val1 < root->val) 
+    if (val1 < root->val) //If the value is less than the current node's value, insert into the left subtree
     {
         root->left = insert(root->left, val1);
     } 
-    else if (val1 > root->val) 
+    else if (val1 > root->val)  // If the value is greater than the current node's value, insert into the right subtree
     {
         root->right = insert(root->right, val1);
     }
 
-    return root;
+    return root; // Return the updated root of the current subtree
 }
 
 
 //-----------------------_delete_---------------------------//
 template <typename T>
-void BST<T>::Delete(const T& val)
+void BST<T>::Delete(const T& val) // public function for deleting node from BST
 {
-    root = Delete(val, root);
+    root = Delete(val, root); // call of private recursive helper function
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1)
+typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1) // Private helper function to recursively delete a value from the Binary Search Tree
 {
-    if (root1 == nullptr)
+    if (root1 == nullptr) // If the current subtree is empty, return nullptr
     {
         return root1;
     }
 
-    if (val < root1->val)
+    if (val < root1->val)  // If the value is less than the current node's value, delete from the left subtree
     {
         root1->left = Delete(val, root1->left);
     }
-    else if (val > root1->val)
+    else if (val > root1->val) // If the value is greater than the current node's value, delete from the right subtree
     {
         root1->right = Delete(val, root1->right);
-    }
-    else
+    } else  // Node with the value to be deleted found
     {
-        if (root1->left == nullptr)
+        if (root1->left == nullptr) // Case 1: Node has no left child
         {
-            Node* tmp = root1->right;
-            delete root1;
-            return tmp;
+            Node* tmp = root1->right;       // create temprary Node to save right child
+            delete root1;                   // deklete target node 
+            return tmp;                     // Return the right child to be connected with the parent of the deleted node
         } 
-        else if (root1->right == nullptr)
+        else if (root1->right == nullptr) // Case 2: Node has no right child
         {
-            Node* tmp = root1->left;
-            delete root1;
-            return tmp;
-        }
-        else
-        {
-            Node* tmp = find_min(root1->right);
-            root1->val = tmp->val;
-            root1->right = Delete(root1->val, root1->right);
+            Node *tmp = root1->left;        // create temprary Node to save lrft child
+            delete root1;                   // deklete target node 
+            return tmp;                     // Return the left child to be connected with the parent of the deleted node
+        } else { // Case 3: Node has both left and right children                                           
+            Node* tmp = find_min(root1->right);                 // Find the minimum value in the right subtree
+            root1->val = tmp->val;                              // Copy the minimum value to the current node
+            root1->right = Delete(root1->val, root1->right);    // Delete the node with the minimum value from the right subtree 
         }
     }
 
-    return root1;
+    return root1; // Return the updated root of the current subtree
 
+    /* 
+    Case 3 Explanation:
+    * If the node to be deleted has both left and right children, we choose the
+    * minimum value from the right subtree to replace the current node. This is
+    * done to maintain the ordering property of the Binary Search Tree.
+    * 1. Find the minimum value in the right subtree.
+    * 2. Copy the minimum value to the current node.
+    * 3. Recursively delete the node with the minimum value from the right subtree.
+    */
 }
 
 //----------------------_search_--------------------------//
 template <typename T>
-bool BST<T>::search(const T& val)
+bool BST<T>::search(const T& val) // Public function to search for a value in the Binary Search Tree
 {
-    return search(root, val);
+    return search(root, val); // call of private recursive helper function
 }
 
 template <typename T>
-bool BST<T>::search(Node* root1, const T& val)
+bool BST<T>::search(Node* root1, const T& val) // Private helper function to recursively search for a value in the Binary Search Tree
 {
-    if (root1 == nullptr)
+    if (root1 == nullptr) // If the current subtree is empty which means the value is not found
     {
         return false;
     }
 
-    if (root1->val == val)
+    if (root1->val == val) // If the current node's value matches the target value, the value is found
     {
         return true;
     }
 
-    if (root1->val < val)
+    if (root1->val < val) // If the target value is greater than the current node's value, search in the right subtree
     {
         return search(root1->right, val);
     }
 
-    return search(root1->left, val);
+    return search(root1->left, val); // If the target value is less than the current node's value, search in the left subtree
 }
 
 
