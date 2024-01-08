@@ -655,95 +655,109 @@ void BST<T>::range_query(int start, int end, Node* root1) // Private helper func
 template <typename T>
 const T& BST<T>::kth_smallest(int k)  // Public function to find the kth smallest element in the Binary Search Tree (BST)
 {
-    return kth_smallest(root, k)->val;
+    return kth_smallest(root, k)->val;   // Call the private helper function to perform the search starting from the root
 }
 
 template <typename T>
 typename BST<T>::Node* BST<T>::kth_smallest(Node* root, int& k) // Private helper function to recursively find the kth smallest element in the BST
 {
-    if (root == nullptr)
+    if (root == nullptr) // If the current node is null, return nullptr
     {
-        return nullptr;  // Call the private helper function to perform the search starting from the root
+        return nullptr;
     }
 
-    Node* left = kth_smallest(root->left, k);
+    Node* left = kth_smallest(root->left, k); // Recursively search the left subtree
 
-    if (left != nullptr)
+    if (left != nullptr)   // If the kth smallest element is found in the left subtree, return it
     {
         return left;
     }
 
-    k--;
+    k--; // Decrease the value of k after visiting the left subtree
 
-    if (k == 0){
+    if (k == 0) // Check if the current node is the kth smallest element
+    {
         return root;
     }
 
-    return kth_smallest(root->right, k);
+    return kth_smallest(root->right, k); // Recursively search the right subtree
 }
 
 
 //---------------------------_kth_largest_-----------------------//
 template <class T>
-const T& BST<T>::kth_largest(int k)
+const T& BST<T>::kth_largest(int k) // Public function to find the kth largest element in the Binary Search Tree (BST)
 {
-    Node* res = kth_largest_node(k);
-    if (res != nullptr)
+    Node* res = kth_largest_node(k); // Call the private helper function to get the kth largest node
+
+    if (res != nullptr) // If a valid node is found, return its value
     {
         return res->val;
     }
-    else
+    else // throw an exception
+    if (res != nullptr)
     {
         throw std::out_of_range("Invalid value of k for kth_largest.");
     }
 }
 
 template <class T>
-typename BST<T>::Node* BST<T>::kth_largest_node(int k)
+typename BST<T>::Node* BST<T>::kth_largest_node(int k) // Private  helper function to find the kth largest node in the BST
 {
-    Node* curr = root;
-    Node* Klargest = nullptr;
+    Node* curr = root; // Initialize current node with root
+    Node* Klargest = nullptr; // pointer to the kth largest node
 
-    int count = 0;
+    int count = 0; // Initialize count to keep track of the number of nodes visited
 
-    while (curr != nullptr) 
+    /*
+    * Morris Traversal is a tree traversal algorithm 
+    * that allows the traversal of binary trees without 
+    * using recursion or an explicit stack. The key idea 
+    * behind Morris Traversal is to modify the structure 
+    * of the tree while traversing, without using additional
+    * data structures like stacks or queues.
+    */
+
+    while (curr != nullptr)   // Traverse the BST using Morris Traversal to find the kth largest node
     {
-        if (curr->right == nullptr) 
+        if (curr->right == nullptr) // If the right child of the current node is null, move to the left child
         {
-            if (++count == k)
+            if (++count == k)  // Check if the current node is the kth largest node and increase count by 1
             {
-                Klargest = curr;
+              Klargest = curr; // asign Klargest with current
             }
 
-            curr = curr->left;
+            curr = curr->left; // Move to the left child
         } 
-        else 
+        else // If the right child of the current node is NOT null
         {
             Node* succ = curr->right;
 
-            while (succ->left != nullptr && succ->left != curr)
+            while (succ->left != nullptr && succ->left != curr) // Traverse to the leftmost node in the right subtree to find the in-order successor
+            {    
                 succ = succ->left;
+            }
 
-            if (succ->left == nullptr) 
+            if (succ->left == nullptr)  // If the in-order successor's left child is null, update it to point to the current node
             {
                 succ->left = curr;
 
-                curr = curr->right;
+                curr = curr->right;  // Move to the right child for further exploration in the right subtree
             } 
-            else 
+            else // If the in-order successor's left child is NOT null, reset it to null
             {
-                succ->left = nullptr;
+                succ->left = nullptr;  // This marks the end of exploration in the right subtree, and we backtrack to the left subtree
 
-                if (++count == k)
+                if (++count == k) // Check if the current node is the kth largest node and increase count by 1
                 {
                     Klargest = curr;
                 }
-                curr = curr->left;
+                curr = curr->left;  // Move to the left child for further exploration in the left subtree
             }
         }
     }
 
-    return Klargest;
+    return Klargest; // Return the pointer to the kth largest node
 }
 
 
@@ -751,8 +765,8 @@ typename BST<T>::Node* BST<T>::kth_largest_node(int k)
 template <class T>
 void BST<T>::update(const T& value, const T& new_value)
 {
-    Delete(value);
-    insert(new_value);
+    Delete(value); // Delete the node with the specified value from the BST
+    insert(new_value); // Insert the new value into the BST
 } 
 
 
@@ -760,7 +774,7 @@ void BST<T>::update(const T& value, const T& new_value)
 template <typename T>
 typename BST<T>::Node* BST<T>::get_root()
 {
-    return root;
+    return root; // return the pointer to root of givven tree
 }
 
 
@@ -768,20 +782,21 @@ typename BST<T>::Node* BST<T>::get_root()
 template <typename T>
 typename BST<T>::Node* BST<T>::search_node(Node* root1, const T& val)
 {
-    if(root1 == nullptr)
+    if(root1 == nullptr) // If the current node is null, the value is not found in the tree
     {
         return nullptr;
     }
 
-    if(root1->val == val)
+    if(root1->val == val)  // Check if the value of the current node is equal to the target value
     {
-        return root1;
+        return root1; // Return the current node as it contains the target value
     }
 
-    if(root1->val < val)
+    if(root1->val < val)  // If the target value is greater than the value of the current node,
     {
-        return search_node(root1->right, val);
+        return search_node(root1->right, val); // search in the right subtree
     }
 
-    return search_node(root1->left, val);
+    // If the target value is smaller than the value of the current node
+    return search_node(root1->left, val); // search in the left subtree
 }
