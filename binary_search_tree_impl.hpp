@@ -179,6 +179,13 @@ typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1) // Private help
     * 3. Recursively delete the node with the minimum value from the right subtree.
     */
 }
+//-------------------------_contains_-------------------------//
+template <typename T>
+bool BST<T>::contains(const T& val) // Public function to search for a value in the Binary Search Tree
+{
+    return search(root, val); // call of private recursive helper function
+}
+
 
 //----------------------_search_--------------------------//
 template <typename T>
@@ -211,201 +218,208 @@ bool BST<T>::search(Node* root1, const T& val) // Private helper function to rec
 
 //---------------------_inorder_-------------------------//
 template <typename T>
-void BST<T>::inorder()
+void BST<T>::inorder()  // Public function to perform an inorder traversal node printing of the Binary Search Tree
 {
-    inorder(root);
-    std::cout << std::endl;
+    inorder(root);          // call of private recursive halper function
+    std::cout << std::endl; // for new line after printing
 }
 
 template <typename T>
-void BST<T>::inorder(Node* root1)
+void BST<T>::inorder(Node* root1) // Private helper function to perform an inorder traversal recursively
 {
-    if (!root1) {
+    if (!root1) // If the current subtree is empty return
+    {
         return;
     }
-    inorder(root1->left);
-    std::cout << root1->val << " ";
-    inorder(root1->right);
+    inorder(root1->left);           // Traverse the left subtree
+    std::cout << root1->val << " "; // printing the current val
+    inorder(root1->right);          // Traverse the right subtree
 }
 
 
 //---------------------_pre_order_-------------------------//
 template <typename T>
-void BST<T>::pre_order()
+void BST<T>::pre_order()    // Public function to perform a pre-order traversal value printing of the Binary Search Tree
 {
-    pre_order(root);
-    std::cout << std::endl;
+    pre_order(root);        // call of private recursive halper function
+    std::cout << std::endl; // for new line after printing
 }
 
 template <typename T>
-void BST<T>::pre_order(Node* root1)
+void BST<T>::pre_order(Node* root1)  // Private helper function to perform a pre-order traversal recursively
 {
-    if (!root1) {
+    if (!root1) // If the current subtree is empty return
+    {
         return;
     }
-    std::cout << root1->val << " ";
-    pre_order(root1->left);
-    pre_order(root1->right);
+    std::cout << root1->val << " "; // printing the current val
+    pre_order(root1->left);         // Traverse the left subtree
+    pre_order(root1->right);        // Traverse the right subtree
 }
 
 
 //-----------------------_post_order_---------------------------//
 template <typename T>
-void BST<T>::post_order()
+void BST<T>::post_order()    // Public function to perform a post-order traversal value printing of the Binary Search Tree
 {
-    post_order(root);
-    std::cout << std::endl;
+    post_order(root);        // call of private recursive halper function
+    std::cout << std::endl;  // for new line after printing
 }
 
 template <typename T>
-void BST<T>::post_order(Node* root1)
+void BST<T>::post_order(Node* root1)    // Private helper function to perform a post-order traversal recursively
 {
-    if (!root1) {
+    if (!root1) { // If the current subtree is empty return
         return;
     }
-    post_order(root1->left);
-    post_order(root1->right);
-    std::cout << root1->val << " ";
+    post_order(root1->left);        // Traverse the left subtree
+    post_order(root1->right);       // Traverse the right subtree
+    std::cout << root1->val << " "; // printing the current val
 }
 
 
 //--------------------_find_Min_--------------------------------//
 template <typename T>
-typename BST<T>::Node* BST<T>::find_min()
+typename BST<T>::Node* BST<T>::find_min()  // Public function to find the node with the minimum value in the Binary Search Tree
 {
-    return find_min(root);
+    return find_min(root); // call of private iterative helper function
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::find_min(Node* root1)
+typename BST<T>::Node* BST<T>::find_min(Node* root1) // Private helper function to find the node with the minimum value iterative
 {
-    if (root == nullptr)
+    if (root == nullptr) // If the root of tree is empty, print an error message and exit
     {
         std::cout << "\nfor find_min\nnullptr" << std::endl;
         exit(0);
     }
 
-    while (root1->left != nullptr)
+    while (root1->left != nullptr) // Iterative Traverse the left subtree until the leftmost leaf is reached
     {
         root1 = root1->left;
     }
 
-    return root1;
+    return root1; // Return the node with the minimum value
 }
 
 
 //-------------------------_find_max_-----------------------------//
 template <typename T>
-typename BST<T>::Node* BST<T>::find_max()
+typename BST<T>::Node* BST<T>::find_max() // Public function to find the node with the maximum value in the Binary Search Tree
 {
-    return find_max(root);
+    return find_max(root); // call of the private iterative helper function
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::find_max(Node* root1)
+typename BST<T>::Node* BST<T>::find_max(Node* root1) // Private helper function to find the node with the maximum value iteratively
 {
-    if (root == nullptr)
+    if (root == nullptr) // If the root of tree is empty, print an error message and exit
     {
         std::cout << "\nfor find_max\nnullptr" << std::endl;
         exit(0);
     }
 
 
-    while (root1->right != nullptr)
+    while (root1->right != nullptr) // Iterative traverse the right subtree until the rightmost leaf is reached
     {
         root1 = root1->right;
     }
 
-    return root1;
-}
+    return root1; // Return the node with the maximum value
+} 
 
 //-------------------------_height_---------------------------//
 template <typename T>
-int BST<T>::height()
+int BST<T>::height() // Public function to calculate the height of the Binary Search Tree
 {
-    return height(root);
+    return height(root); // call of recursive helper function
 }
 
 template <typename T>
-int BST<T>::height(Node* root1)
+int BST<T>::height(Node* root1) // Private helper function to calculate the height of the Binary Search Tree recursively
 {
-    if (root1 == nullptr)
+    if (root1 == nullptr)  // If the current subtree is empty, it reached bottom leaf and return -1
     {
         return -1;
     }
     else
     {
-        int leftH = height(root1->left);
-        int rightH = height(root1->right);
+        int leftH = height(root1->left);     // Calculate the height of the left subtree
+        int rightH = height(root1->right);   // Calculate the height of the left subtree
 
-        // std::cout << "root->val   " << root1->val << std::endl;
-        // std::cout << "leftH   " << leftH << std::endl;
-        // std::cout << "rightH   " << rightH << std::endl;
-
-        return std::max(leftH, rightH) + 1;
+        return std::max(leftH, rightH) + 1;  // Return the maximum height of the left and right subtrees, plus 1
     }
 }
 
 
 //-------------------------_size_-----------------------------//
 template <typename T>
-int BST<T>::size() const
+int BST<T>::size() const // Public function to get the size (number of nodes) of the Binary Search Tree
 {
-    return size(root);
+    return size(root); // call of private recursive helper function
 }
 
 template <typename T>
-int BST<T>::size(Node* root1) const
+int BST<T>::size(Node* root1) const // Public function to get the size (number of nodes) of the Binary Search Tree
 {
-    if (root1 == nullptr)
+    if (root1 == nullptr) // If the current subtree reached the last leaf, its size is 0
     {
         return 0;
     }
 
-    int leftSize = size(root1->left);
-    int rightSize = size(root1->right);
+    int leftSize = size(root1->left);      // Calculate the height of the left subtree
+    int rightSize = size(root1->right);    // Calculate the height of the left subtree
 
-        // std::cout << "**************\nroot->val   " << root1->val << std::endl;
-        // std::cout << "leftSize   " << leftSize << std::endl;
-        // std::cout << "rightSize   " << rightSize << std::endl;
-
-    return leftSize + rightSize + 1;
+    return leftSize + rightSize + 1;   // Return the total size of the current subtree, which is the sum of sizes of left and right subtrees, +1 (for the current node)
+    
 }
 
 
-//--------------------------_successor_-----------------------//
+//--------------------------_successor_-----------------------// 
 template <typename T>
-typename BST<T>::Node* BST<T>::successor(const T& val)
+typename BST<T>::Node* BST<T>::successor(const T& val) // Public function to find the successor of a node with the given value in the Binary Search Tree
 {
-    Node* tar = search_node(root, val);
+    /*
+    * Successor of a node in a Binary Search Tree (BST) is defined as
+    * the node with the smallest value greater than the value of the given
+    * node.
+    */
 
-    if (tar == nullptr)
+    Node* tar = search_node(root, val);  // Search for the node with the given value in the BST
+
+    if (tar == nullptr)  // If the node with the given value is not found, return nullptr
     {
         return nullptr;
     }
 
-    if (tar->right != nullptr)
+    if (tar->right != nullptr)  // If the node has a right subtree
     {
-        return find_min(tar->right);
+        return find_min(tar->right); // find and return the minimum value in that subtree
     }
 
+    /*
+    * ancestors is any other node on the path from the node to the root.
+    */
+
+    // If the node doesn't have a right subtree, find the successor using ancestors
     Node* successor = nullptr;
     Node* ancestor = root;
 
-    while (ancestor != tar)
+    while (ancestor != tar) // Traverse the tree to find the ancestor node whose left child is also an ancestor of the target node
     {
-        if (val < ancestor->val)
+        if (val < ancestor->val) // If the value of the target node is less than the current ancestor's value,
         {
-            successor = ancestor;
-            ancestor = ancestor->left;
+            successor = ancestor; // update the successor
+            ancestor = ancestor->left; // move to the left child
         }
-        else
+        else // If the value of the target node is greater thanthe current anssestor's value
         {
-            ancestor = ancestor->right;
+            ancestor = ancestor->right; // move to the right child
+
         }
     }
 
-    return successor;
+    return successor; // Return the successor node
 }
 
 
@@ -413,31 +427,42 @@ typename BST<T>::Node* BST<T>::successor(const T& val)
 template <typename T>
 typename BST<T>::Node* BST<T>::predecessor(const T& val)
 {
-    Node* tar = search_node(root, val);
 
-    if(tar == nullptr)
+    /*
+    * Predecessor of a node in a Binary Search Tree (BST) is defined as
+    * the node with the largest value smaller than the value of the given node.
+    */
+
+    Node* tar = search_node(root, val); // Search for the node with the given value in the BST
+
+    if(tar == nullptr)  // If the node with the given value is not found, return nullptr
     {
         return nullptr;
     }
 
-    if(tar->left != nullptr)
+    if(tar->left != nullptr) // If the node has a left subtree
     {
-        return find_max(tar->left);
+        return find_max(tar->left); // find the maximum value in that subtree
     }
 
+    /*
+    * ancestors is any other node on the path from the node to the root.
+    */
+
+    // If the node doesn't have a left subtree, find the predecessor using ancestors
     Node* predecessor = nullptr;
     Node* ancestor = root;
 
-    while (ancestor != tar)
+    while (ancestor != tar)  // Traverse the tree to find the ancestor node whose right child is also an ancestor of the target node
     {
-        if (val < ancestor->val)
+        if (val < ancestor->val)  // If the value of the target node is less than the current ancestor's value
         {
-            ancestor = ancestor->left;
+            ancestor = ancestor->left; // move to the left child
         }
-        else
+        else // If the value of the target node is greater than the current ancestor's value
         {
-            predecessor = ancestor;
-            ancestor = ancestor->right;
+            predecessor = ancestor; // update the predecessor
+            ancestor = ancestor->right; // move to the right child
         }
     }
 
@@ -447,49 +472,55 @@ typename BST<T>::Node* BST<T>::predecessor(const T& val)
 
 //-------------------------_is_valid_bst_---------------------//
 template <typename T>
-bool BST<T>::is_valid_bst()
+bool BST<T>::is_valid_bst()  // Public function to check if the Binary Search Tree (BST) is valid
 {
-    return is_valid_bst(root,  std::numeric_limits<T>::min(), std::numeric_limits<T>::max());
+    return is_valid_bst(root,  std::numeric_limits<T>::min(), std::numeric_limits<T>::max()); // Calls the private helper function with the root node and the minimum and maximum limits for values
 }
 
 template <typename T>
-bool BST<T>::is_valid_bst(const Node* node, const T& min_val, const T& max_val) const
+bool BST<T>::is_valid_bst(const Node* node, const T& min_val, const T& max_val) const // Private helper function to recursively check if the Binary Search Tree (BST) is valid
 {
-    if (node == nullptr)
+    if (node == nullptr) // If the node is null, it is a valid BST (empty tree is valid tree)
     {
         return true;
     }
 
-    if (node->val <= min_val || node->val >= max_val)
+    if (node->val <= min_val || node->val >= max_val) // // If the current node's value is outside the valid range, it is not a valid BST
     {
         return false;
     }
 
-    return is_valid_bst(node->left, min_val, node->val) && is_valid_bst(node->right, node->val, max_val);
+    // Recursively check of left and right subtrees
+    return is_valid_bst(node->left, min_val, node->val) &&  // The left subtree must be a valid BST with an updated maximum value (max_val becomes the current node's value).
+            is_valid_bst(node->right, node->val, max_val);  //The right subtree must be a valid BST with an updated minimum value (min_val becomes the current node's value).
 }
 
 
 //-----------------------------_level_order_------------------------//
 template <typename T>
-void BST<T>::level_order() const
+void BST<T>::level_order() const // public function to print BST in level order
 {
-    std::queue<Node*> nodes;
-    
-    nodes.push(root);
+    std::queue<Node *> nodes; // Create a queue to perform level-order traversal
 
-    while (!nodes.empty())
+    nodes.push(root); // Start from the root node
+
+    while (!nodes.empty()) // Continue traversal until all nodes are processed
     {
-        Node* node = nodes.front();
-        if (node->left)
+        Node* node = nodes.front(); // Dequeue the front node
+
+        if (node->left) // Enqueue left child if it exists
         {
             nodes.push(node->left);
         }
-        if (node->right)
+
+        if (node->right) // Enqueue right child if it exists
         {
             nodes.push(node->right);
         }
-        std::cout << node->val << ' ';
-        nodes.pop();
+
+        std::cout << node->val << ' '; // Print the value of the current node
+
+        nodes.pop();// Dequeue the processed node
     }
 }
 
@@ -549,89 +580,90 @@ void BST<T>::level_order() const
 // }
 
 
-//-------------------------_contains_-------------------------//
-template <typename T>
-bool BST<T>::contains(const T& val)
-{
-    return search(root, val);
-}
+
 
 
 //------------------------_serialize_-------------------------//
 template <typename T>
-std::vector<T> BST<T>::serialize()
+std::vector<T> BST<T>::serialize() // Public function to serialize the Binary Search Tree (BST)
 {  
-    std::vector<T> vec;
-    serialize(root, vec);
-    return vec;
+    std::vector<T> vec; // create a vector to save values
+    serialize(root, vec); // Call the private ecursive helper function to perform the serialization starting from the root
+
+    return vec; // Return the serialized vector
 }
 
 template <typename T>
-void BST<T>::serialize(Node* root1, std::vector<T>& vec) 
-{  
+void BST<T>::serialize(Node* root1, std::vector<T>& vec) // Private helper function to perform the recursive serialization of the BST
+{
 
-    if (!root1) {
+    if (!root1) // If the current node is null, return
+    {
         return;
     }
-    serialize(root1->left, vec);
-    vec.emplace_back(root1->val);
-    serialize(root1->right, vec);
+
+    serialize(root1->left, vec); // Recursively serialize the left subtree
+    vec.emplace_back(root1->val); // Append the value of the current node to the vector in in-order order
+    serialize(root1->right, vec); // Recursively serialize the right subtree
 }
 
 
 //--------------------------_range_query_---------------------//
 template <typename T>
-void BST<T>::range_query(int start, int end)
+void BST<T>::range_query(int start, int end) // Public function to perform a range query on the Binary Search Tree (BST)
 {
-    if (start > end)
+    if (start > end) // Ensure that the start value is not greater than the end value
     {
-        return;
-    }        
-    range_query(start, end, root);
+        return; // Invalid range, return without processing
+    }
+
+    range_query(start, end, root); // Call the private recursive helper function to perform the range query starting from the root
 }
 
 template <typename T>
-void BST<T>::range_query(int start, int end, Node* root1)
+void BST<T>::range_query(int start, int end, Node* root1) // Private helper function to perform the recursive range query on the BST
 {
-    if (!root1) {
+    if (!root1) // If the current node is null, return
+    {
         return;
     }
 
-    range_query(start, end, root1->left);
-    if (root1->val >= start && root1->val < end)
+    range_query(start, end, root1->left);  // Recursively perform the range query on the left subtree
+
+    if (root1->val >= start && root1->val < end)  // Check if the value of the current node is within the specified range
     {
-        std::cout << root1->val << " ";
+        std::cout << root1->val << " "; // Print the value of the current node
     }
-    else if (root1->val == end)
+    else if (root1->val == end) // Check if the value of the current node is equal to the end value
     {
-        std::cout << std::endl;
+        std::cout << std::endl;  // Print a newline and return, as we reached the end of the range
         return;
     }
 
-    range_query(start, end, root1->right);
+    range_query(start, end, root1->right);  // Recursively perform the range query on the right subtree
 
-    if (root1->val == end)
-    {
-        std::cout << std::endl;
-        return;
-    }
+    // to ensure that a newline is printed when the end value of the range is encountered during the traversal
+    // if (root1->val == end) // Check if the value of the current node is equal to the end value
+    // {
+    //     std::cout << std::endl; // Print a newline and return, as we reached the end of the range 
+    //     return; 
+    // }
 }
 
 
 //------------------------_kth_smallest_--------------------------//
 template <typename T>
-const T& BST<T>::kth_smallest(int k)
+const T& BST<T>::kth_smallest(int k)  // Public function to find the kth smallest element in the Binary Search Tree (BST)
 {
-    int count = 0;
     return kth_smallest(root, k)->val;
 }
 
 template <typename T>
-typename BST<T>::Node* BST<T>::kth_smallest(Node* root, int& k)
+typename BST<T>::Node* BST<T>::kth_smallest(Node* root, int& k) // Private helper function to recursively find the kth smallest element in the BST
 {
     if (root == nullptr)
     {
-        return nullptr;
+        return nullptr;  // Call the private helper function to perform the search starting from the root
     }
 
     Node* left = kth_smallest(root->left, k);
