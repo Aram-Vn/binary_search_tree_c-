@@ -2,42 +2,29 @@
 template <typename T> 
 BST<T>::BST()         
     : root(nullptr)   
-{}                    
+{}
 
-//  initializer list constructor 
-template <typename T>
-BST<T>::BST(std::initializer_list<T> init) :      
-    root(nullptr)                             
-{                                             
-    for (const auto& elem : init)
+template <typename T> //  initializer list constructor
+BST<T>::BST(std::initializer_list<T> init) : root(nullptr)
+{
+    for (const auto& elem : init) // calls insert function for every elem
     {
-      // calls insert function for every elem
-      //to insert theme in rightplase
-      this->insert(elem);                   
+        this->insert(elem); // inserts theme in rightplase
     }                                         
-}                                             
+}
 
-// destructor
-template <typename T>
-BST<T>::~BST()          
+template <typename T> // destructor
+BST<T>::~BST()
 {                       
     clear(root);        
-} 
+}
 
-// Node default constructor
-template <typename T>
-BST<T>::Node::Node() :  
-    left(nullptr),     
-    right(nullptr),     
-    val(0)              
-{}                      
+template <typename T> // Node default constructor
+BST<T>::Node::Node() : left(nullptr), right(nullptr), val(0)
+{}
 
-// Node parameterized constructor
-template <typename T>
-BST<T>::Node::Node(T val1, Node* left1, Node* right1) : 
-    left(left1),                                       
-    right(right1),                                      
-    val(val1)                                           
+template <typename T> // Node parameterized constructor
+BST<T>::Node::Node(T val1, Node* left1, Node* right1) : left(left1), right(right1), val(val1)
 {}
 
 
@@ -147,20 +134,23 @@ typename BST<T>::Node* BST<T>::Delete(const T& val, Node* root1) // Private help
     else if (val > root1->val) // If the value is greater than the current node's value, delete from the right subtree
     {
         root1->right = Delete(val, root1->right);
-    } else  // Node with the value to be deleted found
+    } 
+    else  // Node with the value to be deleted found
     {
         if (root1->left == nullptr) // Case 1: Node has no left child
         {
             Node* tmp = root1->right;       // create temprary Node to save right child
-            delete root1;                   // deklete target node 
+            delete root1;                   // delete target node 
             return tmp;                     // Return the right child to be connected with the parent of the deleted node
         } 
         else if (root1->right == nullptr) // Case 2: Node has no right child
         {
             Node *tmp = root1->left;        // create temprary Node to save lrft child
-            delete root1;                   // deklete target node 
+            delete root1;                   // delete target node 
             return tmp;                     // Return the left child to be connected with the parent of the deleted node
-        } else { // Case 3: Node has both left and right children                                           
+        }
+        else // Case 3: Node has both left and right children
+        {                                                               
             Node* tmp = find_min(root1->right);                 // Find the minimum value in the right subtree
             root1->val = tmp->val;                              // Copy the minimum value to the current node
             root1->right = Delete(root1->val, root1->right);    // Delete the node with the minimum value from the right subtree 
@@ -425,7 +415,7 @@ typename BST<T>::Node* BST<T>::successor(const T& val) // Public function to fin
 
 //-------------------------_predecessor_----------------------//
 template <typename T>
-typename BST<T>::Node* BST<T>::predecessor(const T& val)
+typename BST<T>::Node* BST<T>::predecessor(const T& val) // Public function to find the predecessor of a node with the given value in the Binary Search Tree
 {
 
     /*
@@ -523,65 +513,6 @@ void BST<T>::level_order() const // public function to print BST in level order
         nodes.pop();// Dequeue the processed node
     }
 }
-
-
-//-----------------------------_print_tree_------------------------//
-// template <typename T>
-// void BST<T>::print_tree() const
-// {
-//     std::queue<Node*> nodes;
-    
-//     nodes.push(root);
-
-//     int num = 1;
-//     int po = 1;
-
-//     while (!nodes.empty())
-//     {
-//         Node* node = nodes.front();
-//         if (node->left)
-//         {
-//             nodes.push(node->left);
-//         }
-//         else 
-//         {
-//             nodes.push(nullptr);
-//         }
-
-//         if (node->right)
-//         {
-//             nodes.push(node->right);
-//         }
-//         else 
-//         {
-//             nodes.push(nullptr);
-//         }
-
-//         if(nodes.front() != nullptr)
-//         {
-//             std::cout << node->val << ' ';
-//             nodes.pop();
-//         }
-//         else 
-//         {
-//             nodes.pop();
-//             std::cout << "  " << std::endl;
-//         }
-
-        
-//         num += 1;
-//         po += 1;
-
-//         if(std::pow(num, 1.0 / po) == 0)
-//         {
-//             std::cout << std::endl;
-//         }
-//     }
-// }
-
-
-
-
 
 //------------------------_serialize_-------------------------//
 template <typename T>
@@ -763,7 +694,7 @@ typename BST<T>::Node* BST<T>::kth_largest_node(int k) // Private  helper functi
 
 //--------------------------_update_--------------------------//
 template <class T>
-void BST<T>::update(const T& value, const T& new_value)
+void BST<T>::update(const T& value, const T& new_value) // replased node with value with new_node
 {
     Delete(value); // Delete the node with the specified value from the BST
     insert(new_value); // Insert the new value into the BST

@@ -3,6 +3,7 @@
 cmake_minimum_required(VERSION 3.12)
 project(BinarySearchTree)
 
+#add compile_commands.json for vscode
 set(CMAKE_EXPORT_COMPILE_COMMANDS on)
 
 # Add the source files
