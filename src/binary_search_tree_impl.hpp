@@ -572,13 +572,6 @@ void BST<T>::range_query(int start, int end, Node* root1) // Private helper func
     }
 
     range_query(start, end, root1->right);  // Recursively perform the range query on the right subtree
-
-    // to ensure that a newline is printed when the end value of the range is encountered during the traversal
-    // if (root1->val == end) // Check if the value of the current node is equal to the end value
-    // {
-    //     std::cout << std::endl; // Print a newline and return, as we reached the end of the range 
-    //     return; 
-    // }
 }
 
 
