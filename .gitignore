@@ -1,3 +1,5 @@
-*.swp
-*.out
-*.gch
+build/
+.cache/
+compile_commands.json
+/src/*.out
+/src/*.cpp
