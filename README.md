@@ -88,7 +88,7 @@ cmake --build build/
 build/BinarySearchTree
 ```
 
-or you can just move `binary_search_tree_impl.hpp` and `binary_search_tree.h` to your working directory 
+## Or you can just move `binary_search_tree_impl.hpp` and `binary_search_tree.h` to your working directory 
 
 1.Include the "binary_search_tree.h" file in your C++ project.
    ```cpp
