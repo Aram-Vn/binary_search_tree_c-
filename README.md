@@ -58,7 +58,7 @@ with ssh`
    git clone git@github.com:Aram-Vn/binary_search_tree_cpp.git
    cd binary-search-tree
    ```
-with HTTPS``       
+with HTTPS`       
    ```bash
    git clone https://github.com/Aram-Vn/binary_search_tree_cpp.git
    cd binary-search-tree
@@ -71,20 +71,22 @@ or with GitHub CLI
 
 After clonning you can add main.cpp in crs/ and use cmake to compile.
 
-1. Create a `build/` directory 
-   ```bash
-   mkdir build
-   cd build
-   ```
-2. buid it.
-   ```bash
-    cmake ..    
-    make
-   ```
-3. afther that you can run `BinarySearchTree executable.
-   ```bash
-    ./BinarySearchTree 
-   ```
+## Build instruction
+1. Generate the cmake build files first by executing the following command at the root directory:
+```
+cmake ./ -B build/
+```
+You will see a `build` folder in the root directory which will contain cmake's generation files.
+
+2. Compile and build the cmake project:
+```
+cmake --build build/
+```
+
+3. Run the executable:
+```
+build/BinarySearchTree
+```
 
 or you can just move `binary_search_tree_impl.hpp` and `binary_search_tree.h` to your working directory 
 
