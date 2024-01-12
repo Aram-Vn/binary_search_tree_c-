@@ -1,7 +1,11 @@
 # Binary search tree
 
 ## What is a Binary Search Tree (BST)?
-A Binary Search Tree is a tree data structure in which each node has at most two children, referred to as the left and right child. The key property of a BST is that the values in the left subtree of a node are less than the value of the node, and values in the right subtree are greater. This property ensures efficient searching, insertion, and deletion operations.
+A Binary Search Tree is a tree data structure in which each node has at most two children, referred to as the left and right child. The key property of a BST is that the values in the left subtree of a node are less than the value of the node, and values in the right subtree are greater. The time complexity of operations on the binary search tree is linear with respect to the height of the tree.
+
+Binary search trees allow binary search for fast lookup, addition, and removal of data items. Since the nodes in a BST are laid out so that each comparison skips about half of the remaining tree, the lookup performance is proportional to that of binary logarithm.
+
+Delete and search takes `O(logn)` for n nodes. In the worst case, they degrade to that of a singly linked list: `O(n)`.
 
 ## Features
 ## Constructors and Destructors
